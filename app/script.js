@@ -1,20 +1,20 @@
-'use strict'
+'use strict';
 
 $(function() {
-  $("#name").click(function() {
+  $('#name').click(function() {
     $.get('adjective', function(response) {
       var adjective = response.word;
-      $("#adjective").text(adjective);
+      $('#adjective').text(adjective);
     });
 
     $.get('verb', function(response) {
       var verb = response.word;
-      $("#verb").text(verb);
+      $('#verb').text(verb);
     });
 
     $.get('noun', function(response) {
       var noun = response.word;
-      $("#noun").text(noun);
+      $('#noun').text(noun);
     });
   });
 
@@ -27,36 +27,34 @@ $(function() {
     var adjective = $('input[name=adjective]').val();
     var adjectivePost;
 
-    var verb = ('input[name=verb]').val();
+    var verb = $('input[name=verb]').val();
     var verbPost;
 
-    var noun = ('input[name=noun]').val();
+    var noun = $('input[name=noun]').val();
     var nounPost;
 
     if (adjective) {
       adjectivePost = {word: adjective};
-      $.post('adjective', adjectivePost, function(){
+      $.post('adjective', adjectivePost, function(response) {
         var adjectiveRes = response.message;
         $('#adjectiveRes').text(adjectiveRes);
       });
-    } else if (verb) {
+    }
+
+    if (verb) {
       verbPost = {word: verb};
-      $.post('verb', verbPost, function(){
+      $.post('verb', verbPost, function(response) {
         var verbRes = response.message;
         $('#verbRes').text(verbRes);
       });
-    } else (noun) {
+    }
+
+    if (noun) {
       nounPost = {word: noun};
-      $.post('noun', nounPost, function(){
+      $.post('noun', nounPost, function(response) {
         var nounRes = response.message;
         $('#nounRes').text(nounRes);
       });
     }
-    }
-
-
-
-
   });
-
 });
